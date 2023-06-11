@@ -1,0 +1,179 @@
+<div class="container">
+  <section>
+    <h1 suiHeader>Start Your Journey With Us</h1>
+    <p>
+      Sign up with us to get your hands on mouth watering exclusive offers and
+      cheaper deals including one month free premium plan.
+    </p>
+  </section>
+  <section>
+    <h1 suiHeader>Sign Up Form</h1>
+    <form sui-form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+      <div suiFormFields suiWidth="two">
+        <div
+          suiFormField
+          [suiRequired]="true"
+          [suiError]="
+            firstName && firstName.touched && firstName.invalid ? true : false
+          "
+        >
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="e.g John"
+            required
+            formControlName="firstName"
+          />
+        </div>
+        <div
+          suiFormField
+          [suiRequired]="true"
+          [suiError]="
+            lastName && lastName.touched && lastName.invalid ? true : false
+          "
+        >
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            required
+            name="lastName"
+            id="lastName"
+            placeholder="e.g Doe"
+            formControlName="lastName"
+          />
+        </div>
+      </div>
+      <div
+        suiFormField
+        [suiRequired]="true"
+        [suiError]="email && email.touched && email.invalid ? true : false"
+      >
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          required
+          id="email"
+          name="email"
+          placeholder="e.g JohnDoe@gmail.com"
+          formControlName="email"
+        />
+      </div>
+      <div
+        suiFormField
+        [suiRequired]="true"
+        [suiError]="
+          password && password.touched && password.invalid ? true : false
+        "
+      >
+        <label for="password">Password</label>
+        <input
+          type="password"
+          required
+          id="password"
+          name="password"
+          placeholder="minimum of 5 characters"
+          formControlName="password"
+        />
+      </div>
+
+      <div
+        suiFormField
+        [suiRequired]="true"
+        [suiError]="
+          phoneNumber && phoneNumber.touched && phoneNumber.invalid
+            ? true
+            : false
+        "
+      >
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          type="number"
+          id="phoneNumber"
+          min="00000000000"
+          max="99999999999"
+          required
+          name="phoneNumber"
+          placeholder="e.g 09000000000"
+          formControlName="phoneNumber"
+        />
+      </div>
+
+      <div
+        suiFormField
+        [suiRequired]="true"
+        [suiError]="
+          country && country.touched && country.invalid ? true : false
+        "
+      >
+        <label for="country">Country</label>
+        <sui-select
+          [suiSearch]="true"
+          suiPlaceholder="Select Country"
+          required
+          name="country"
+          [suiOptions]="countries"
+          formControlName="country"
+        >
+        </sui-select>
+      </div>
+
+      <div
+        suiFormField
+        [suiRequired]="true"
+        [suiError]="
+          occupation && occupation.touched && occupation.invalid ? true : false
+        "
+      >
+        <label for="occupation">Occupation</label>
+        <sui-select
+          [suiSearch]="true"
+          suiPlaceholder="Select Occupation"
+          required
+          name="occupation"
+          [suiOptions]="occupations"
+          formControlName="occupation"
+        >
+        </sui-select>
+      </div>
+
+      <div suiFormFields [suiGrouped]="true">
+        <label for="successful">Successful:</label>
+        <div suiFormField required>
+          <div class="ui radio checkbox">
+            <input
+              type="radio"
+              name="successful"
+              id="successfulTrue"
+              required
+              [value]="true"
+              formControlName="successful"
+            />
+            <label for="successfulTrue">True</label>
+          </div>
+        </div>
+        <div suiFormField required>
+          <div class="ui radio checkbox">
+            <input
+              type="radio"
+              name="successful"
+              id="successfulFalse"
+              [value]="false"
+              required
+              formControlName="successful"
+            />
+            <label for="successfulFalse">False</label>
+          </div>
+        </div>
+        <span
+          *ngIf="successful && successful.touched && successful.invalid"
+          style="color: red"
+          >Successful is required</span
+        >
+      </div>
+
+      <button sui-button [disabled]="registrationForm.invalid ? true : false" type="submit" suiEmphasis="primary">Submit</button>
+    </form>
+  </section>
+</div>
